@@ -1,0 +1,45 @@
+<!DOCTYPE>
+
+<html ng-app= "myApp">
+	<head>
+		<title>Contact List App</title>
+		<link rel="stylesheet" type="text/css" href="css/normalize.css">
+		<link rel="stylesheet" type="text/css" href="css/skeleton.css">
+	</head>
+	<body >
+		<div class= "container twelve columns" ng-controller= "AppCtrl">
+			<h1>Contact List App</h1>
+			<table class = "table twelve columns">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Email</th>
+						<th>Number</th>
+						<th>Action</th>
+						<th>&nbsp</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><input ng-model= 'contact.name'></td>
+						<td><input ng-model= 'contact.email'></td>
+						<td><input ng-model= 'contact.number'></td>
+						<td><button ng-click= 'addContact()'>Add Contact</button></td>
+						<td><button ng-click= "update()">Update</button>
+							<button ng-click= "deselect()">Clear</button>
+						</td>
+					</tr>
+					<tr ng-repeat="contact in contactlist">
+						<td>{{contact.name}}</td>
+						<td>{{contact.email}}</td>
+						<td>{{contact.number}}</td>
+						<td><button ng-click= 'remove(contact._id)'>Remove</button></td>
+						<td><button ng-click= 'edit(contact._id)'>Edit</button></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</body>
+	<script src= "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.2/angular.min.js"></script>
+	<script src= "controller/controller.js"></script>
+</html>
