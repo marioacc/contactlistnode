@@ -2,14 +2,22 @@ var myApp = angular.module('myApp', []);
 
 myApp.controller('AppCtrl', ['$scope', '$http', function($scope, $http) {
     console.log("Hello World from controller");
+    $scope.editContact =[];
     var refresh = function() {
+
     	$http.get("/contactlist").success(function(response){
     	console.log("I got the data I requested");
     	$scope.contactlist = response;
+
     	});
     };
     refresh();
-   
+    $scope.showEdit= true;
+
+    $scope.editing = function() {
+      return !$scope.showEdit;
+    };
+
     $scope.addContact = function() {
     	console.log($scope.contact);
     	$http.post('/contactlist', $scope.contact).success(function(response){
@@ -23,15 +31,13 @@ myApp.controller('AppCtrl', ['$scope', '$http', function($scope, $http) {
     		refresh();
     	});
     };
-    $scope.edit = function(id){
+    $scope.edit = function(id,contact){
     	console.log(id);
-    	$http.get('/contactlist/' +id).success(function(response){
-    		$scope.contact = response;
-    	});
+    	contact.show=true;
     };
-    $scope.update = function() {
-    	console.log($scope.contact.id);
-    	$http.put('/contactlist/' + $scope.contact._id, $scope.contact).success(function(response){
+    $scope.update = function(id, index) {
+    	console.log($scope.editContact[index].name);
+    	$http.put('/contactlist/' + id, $scope.editContact[index]).success(function(response){
     		refresh();
     	});
 
@@ -40,4 +46,8 @@ myApp.controller('AppCtrl', ['$scope', '$http', function($scope, $http) {
     	$scope.contact = "";
     }
 
-}]);//End of AppCtrl 
+}]);//End of AppCtrl
+
+function edit(id){
+  // $("#"+id).
+}

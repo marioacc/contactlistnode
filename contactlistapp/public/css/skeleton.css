@@ -400,6 +400,10 @@ near the relevant code. For example, if you wanted to change the styles for butt
 on small devices, paste the mobile query code up in the buttons section and style it
 there.
 */
+/*Extra CSS*/
+h1{
+  text-align: center;
+}
 
 
 /* Larger than mobile */

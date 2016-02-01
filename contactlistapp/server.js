@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 var mongojs = require('mongojs');
-var db = mongojs('contactlist', ['contactlist']); 
+var db = mongojs('contactlist', ['contactlist']);
 var bodyParser = require('body-parser');
 
 app.use(express.static(__dirname + "/public"));
@@ -34,11 +34,13 @@ app.get('/contactlist/:id', function(req,res){
 	});
 });
 app.put('/contactlist/:id', function(req,res){
+	console.log(req.body.name);
 	var id = req.params.id;
 	console.log(id);
-	db.contactlist.findAndModify({query: {_id: mongojs.ObjectId(id)}, 
+	db.contactlist.findAndModify({query: {_id: mongojs.ObjectId(id)},
 		update: {$set: {name: req.body.name, email: req.body.email, number: req.body.number}},
 		new: true}, function(err, doc){
+			console.log(JSON.stringify(doc));
 			res.json(doc);
 		}
 	);
