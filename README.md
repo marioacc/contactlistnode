@@ -35,4 +35,5 @@ It can take some minutes the first time you run it. If you see this, it means yo
   To install the package.json<br>
 2-. Run the server, do:<br>
   <code>node server.js</code>
+  <br> Now check http:localhost:3000
   
