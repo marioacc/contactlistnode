@@ -1,0 +1,71 @@
+<!DOCTYPE>
+
+<html ng-app= "myApp">
+	<head>
+		<title>Contact List App</title>
+		<link rel="stylesheet" type="text/css" href="css/normalize.css">
+		<link rel="stylesheet" type="text/css" href="css/skeleton.css">
+
+	</head>
+	<body >
+		<div class= "container twelve columns off" ng-controller= "AppCtrl">
+			<h1>Contact List App</h1>
+			<table class = "row twelve columns ">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Lastname</th>
+						<th>Email</th>
+						<th>Number</th>
+						<th>Address</th>
+						<th>Action</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><input  type="text" ng-model= 'contact.name'></td>
+						<td><input type="text" ng-model= 'contact.lastname'></td>
+						<td><input type="email" ng-model= 'contact.email'></td>
+						<td><input type="number"ng-model= 'contact.number'></td>
+						<td><input type="text" ng-model= 'contact.address'></td>
+						<td>
+							<button class="button-primary" type="submit" ng-click= 'addContact()'>Add Contact</button>
+							<button class="button-primary" ng-click= "update()">Update</button>
+							<button class="button-primary" ng-click= "deselect()">Clear</button>
+						</td>
+					</tr>
+					<tr ng-repeat="(i, contact) in contactlist track by $index" ng-init="contact.show=false" >
+						<form ng-submit="update(contact._id, i)">
+							<td ng-show="contact.show"><input type="text" ng-init="editContact[i].name= contactlist[i].name" ng-model= 'editContact[i].name' value= 'editContact[i].name'></td>
+							<td ng-show="contact.show"><input type="text" ng-init="editContact[i].lastname= contactlist[i].lastname" ng-model= 'editContact[i].lastname' value= 'editContact[i].lastname'></td>
+							<td ng-show="contact.show"><input type="email" ng-init="editContact[i].email= contactlist[i].email" ng-model= 'editContact[i].email' value= 'editContact[i].email' ></td>
+							<td ng-show="contact.show"><input type="number" ng-init="editContact[i].number= contactlist[i].number" ng-model= 'editContact[i].number' value= 'editContact[i].number' ></td>
+							<td ng-show="contact.show"><input type="text" ng-init="editContact[i].address= contactlist[i].address" ng-model= 'editContact[i].address' value= 'editContact[i].address' ></td>
+
+							<td ng-show="contact.show">
+								<button class="button-primary" ng-click= 'remove(contact._id)'>Remove</button>
+								<button class="button-primary" type="submit">Update</button>
+							</td>
+
+						</form>
+
+							<td ng-hide="contact.show" >{{contact.name}}</td>
+							<td ng-hide="contact.show" >{{contact.lastname}}</td>
+							<td ng-hide="contact.show" >{{contact.email}}</td>
+							<td ng-hide="contact.show" >{{contact.number}}</td>
+							<td ng-hide="contact.show" >{{contact.address}}</td>
+							<td ng-hide="contact.show" >
+								<button class="button-primary" ng-click= 'remove(contact._id)'>Remove</button>
+								<button class="button-primary" ng-click= 'edit(contact._id, contactlist[i]) '>Edit</button>
+							</td>
+
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<script src= "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.2/angular.min.js"></script>
+		<script src= "controller/controller.js"></script>
+	</body>
+
+</html>
