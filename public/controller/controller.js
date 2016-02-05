@@ -19,12 +19,17 @@ myApp.controller('AppCtrl', ['$scope', '$http', function($scope, $http) {
     };
 
     $scope.addContact = function(isValid) {
+        var re = /[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}/igm;
+        if (re.test($scope.contact.email)){
+          $http.post('/contactlist', $scope.contact).success(function(response){
+            console.log(response);
+            refresh();
+          });
 
-        $http.post('/contactlist', $scope.contact).success(function(response){
-          console.log(response);
-          refresh();
-        });
-    
+        }else {
+          alert("Verify your form");
+        }
+
     };
     $scope.remove = function(id){
     	$http.delete('/contactlist/' +id).success(function(response){
@@ -36,11 +41,14 @@ myApp.controller('AppCtrl', ['$scope', '$http', function($scope, $http) {
     };
 
     $scope.update = function(id, index, isValid) {
-
+      var re = /[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}/igm;
+      if (re.test($scope.editContact[index].email)){
         $http.put('/contactlist/' + id, $scope.editContact[index]).success(function(response){
           refresh();
         });
-
+      }else{
+        alert("Verify your form");
+      }
     };
     $scope.deselect = function() {
     	$scope.contact = "";
