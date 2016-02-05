@@ -1,10 +1,9 @@
 # Contact-list with Node.js and the MEAN stack.
-
 <h4>Windows:</h4>
-1-. Download Node.js from  https://nodejs.org/ <br>
-2-. Download MongoDB from https://www.mongodb.org <br>
-3-. Add mongo to path. <br>
-4-. Run mongod (this is the deamon)<br>
+1-. Download and install Node.js from:  https://nodejs.org/ (the stable version). At the time of this post was 5.5.0.<br>
+2-. Download MongoDB from https://www.mongodb.org. At the time of this post was 3.2.1<br>
+3-. Run mongod. By default mongodb is installed in <code>C:\Program Files\MongoDB\Server\3.2\bin</code> You can add it to the enviroment variables also you can open your terminal and paste <code>cd C:\Program Files\MongoDB\Server\3.2\bin</code> or the directory where you installed mongodb and run <code>mongod</code></br>
+
 
 <h4>Mac OSX</h4>
 1-.Download and install Node.js from:  https://nodejs.org/ (the stable version). At the time of this post was 5.5.0.<br>
@@ -25,6 +24,7 @@
     <code>use contactlist</code>
     This last step will create the database contactlist if it hasn't been created before.
 
+<h3>For Windows and Mac OSX</h3>
 <h4>Check if it worked</h4>
 It can take some minutes the first time you run it. If you see this, it means you succeeded:<br>
 <code>2016-01-30T18:38:05.710-0700 I NETWORK  [initandlisten] waiting for connections on port 27017</code>
@@ -35,5 +35,5 @@ It can take some minutes the first time you run it. If you see this, it means yo
   To install the package.json<br>
 2-. Run the server, do:<br>
   <code>node server.js</code>
-  <br> Now check http://localhost:3000
+  <br> Now check http://localhost:3000 and prepare yourself...
   
